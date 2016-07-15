@@ -1,0 +1,2 @@
+media-video/ffmpeg amr amrenc -bindist bluray cdio celt cpudetection faac fdk frei0r gme libsoxr libv4l openssl opus quvi rtmp schroedinger ssh twolame vpx webp x265 zvbi
+virtual/ffmpeg opus

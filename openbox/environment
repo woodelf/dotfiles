@@ -1,0 +1,13 @@
+#
+# Set system-wide environment variables here for Openbox
+# User-specific variables should be placed in $HOME/.config/openbox/environment
+#
+
+# To set your language for displaying messages and time/date formats, use the following:
+LANG=zh_CN.UTF8
+
+# To set your keyboard layout, you need to modify your X config:
+# http://www.google.com/search?q=how+to+set+keyboard+layout+xorg
+export XMODIFIERS=@im=fcitx
+export GTK_IM_MODULE=fcitx
+export QT_IM_MODULE=fcitx

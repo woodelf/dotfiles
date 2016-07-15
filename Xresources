@@ -1,0 +1,94 @@
+!XTerm settings
+!Enable UTF-8
+XTerm*locale: true
+XTerm*utf8Title: true
+
+!Font settings
+XTerm*faceName: Droid Sans Mono:antialias=True
+XTerm*faceNameDoublesize: WenQuanYi Micro Hei Mono:antialias=True
+xterm*faceSize: 12
+
+!Fix the 'Alt' key
+XTerm*metaSendsEscape: true
+
+!Scrolling settings
+Xterm*saveLines: 4096
+
+!Enable scrollbar on right side
+XTerm*scrollBar: true
+xterm*rightScrollBar: true
+
+!Enable clipboard
+!XTerm*VT100.translations: #override : select-end(PRIMARY, CLIPBOARD, CUT_BUFFER0)
+XTerm*selectToClipboard: true
+
+!Color settings
+XTerm*foreground: rgb:b2/b2/b2
+XTerm*background: rgb:08/08/08
+XTerm*color0: rgb:28/28/28
+
+!Lines omitted
+XTerm*color15: rgb:e4/e4/e4
+
+!Enable bell urgency
+XTerm*bellIsUrgent: true
+
+!URxvt settings
+!Do not scroll with output
+URxvt.scrollTtyOutput: true 
+
+!Scroll in relation to buffer (with mouse scroll or Shift+Page Up)
+URxvt.scrollWithBuffer: true
+
+!Scroll back to the bottom on keypress
+URxvt.scrollTtyKeypress: true
+
+!Scroll back buffer in secondary screen
+URxvt.secondaryWheel: 1
+
+!Font settings
+URxvt.font: xft:WenQuanYi MicroHei Mono:size=12
+!URxvt.letterSpace: -1
+
+!Enable clipboard and tab
+URxvt.perl-ext-common: default,selection-to-clipboard,tabbed
+
+!Color settings
+!URxvt.foreground: rgb:b2/b2/b2
+!URxvt.background: rgb:08/08/08
+!URxvt.color0: rgb:28/28/28
+!URxvt.color12: rgb:5c/5c/ff
+
+!Tango color
+! black
+*color0:  #2E3436
+*color8:  #555753
+! red
+*color1:  #a40000
+*color9:  #EF2929
+! green
+*color2:  #4E9A06
+*color10: #8AE234
+! yellow
+*color3:  #C4A000
+*color11: #FCE94F
+! blue
+*color4:  #3465A4
+*color12: #729FCF
+! purple
+*color5:  #75507B
+*color13: #AD7FA8
+! orange (replaces cyan)
+*color6:  #ce5c00
+*color14: #fcaf3e
+! white
+*color7:  #babdb9
+*color15: #EEEEEC
+
+!Enable real transparency
+URxvt.depth: 32
+URxvt.background: rgba:0000/0000/0200/c800
+
+!Enable fake transparency
+!URxvt.transparent: true
+!URxvt.shading: 60
