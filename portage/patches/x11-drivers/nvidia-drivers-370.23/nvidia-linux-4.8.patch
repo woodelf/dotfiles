@@ -1,0 +1,47 @@
+--- a/kernel/nvidia-drm/nvidia-drm-drv.c	2016-08-19 17:33:40.795379867 +0000
++++ b/kernel/nvidia-drm/nvidia-drm-drv.c	2016-08-19 17:36:48.726720532 +0000
+@@ -37,6 +37,7 @@
+ #include "nvidia-drm-ioctl.h"
+ 
+ #include <drm/drmP.h>
++#include <drm/drm_auth.h>
+ 
+ #include <drm/drm_crtc_helper.h>
+ 
+@@ -420,7 +421,7 @@
+ 
+ static
+ void nvidia_drm_master_drop(struct drm_device *dev,
+-                            struct drm_file *file_priv, bool from_release)
++                            struct drm_file *file_priv)
+ {
+     struct nvidia_drm_device *nv_dev = dev->dev_private;
+     int ret;
+@@ -453,7 +454,7 @@
+     mutex_lock(&dev->master_mutex);
+ 
+     if (!file_priv->is_master ||
+-        !file_priv->minor->master)
++        !file_priv->master)
+     {
+         goto done;
+     }
+@@ -474,7 +475,7 @@
+      * NVKMS modeset ownership, because nvidia_drm_master_set()'s call to
+      * grabOwnership() will fail.
+      */
+-    drm_master_put(&file_priv->minor->master);
++    drm_master_put(&file_priv->master);
+     file_priv->is_master = 0;
+ 
+     ret = 0;
+--- a/kernel/nvidia-drm/nvidia-drm-modeset.c	2016-08-19 17:37:10.396871100 +0000
++++ b/kernel/nvidia-drm/nvidia-drm-modeset.c	2016-08-19 17:38:03.450570112 +0000
+@@ -675,7 +675,7 @@
+         goto failed;
+     }
+ 
+-    drm_atomic_helper_swap_state(dev, state);
++    drm_atomic_helper_swap_state(state, true);
+ 
+     nvidia_drm_update_head_mode_config(state, requested_config);
