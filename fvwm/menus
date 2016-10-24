@@ -1,0 +1,151 @@
+########## Menus ##########
+# Menu styles
+MenuStyle * Font "xft:WenQuanYi MicroHei Mono:Regular:size=10"
+
+# FVWM menus
+DestroyMenu "FvwmMenu"
+AddToMenu "FvwmMenu" "FvwmMenu" Title
++ "互联网" Popup "互联网"
++ "办公" Popup "办公"
++ "图形" Popup "图形"
++ "工具" Popup "工具"
++ "影音" Popup "影音"
++ "杂项" Popup "杂项"
++ "游戏" Popup "游戏"
++ "系统工具" Popup "系统工具"
++ "编程" Popup "编程"
++ "附件" Popup "附件"
++ "其它" Popup "其它"
++ "" Nop
++ "$[gt.Regenerate XDG Menu(s)]" Module FvwmPerl -l fvwm-menu-desktop-config.fpl
+
+DestroyMenu "互联网"
+AddToMenu "互联网" "互联网" Title
++ "Aurora" Exec exec  firefox 
++ "Deluge" Exec exec  deluge-gtk 
++ "Empathy" Exec exec  empathy
++ "FileZilla" Exec exec  filezilla
++ "Google Chrome" Exec exec  /usr/bin/google-chrome-stable 
++ "Pidgin 互联网通讯程序" Exec exec  pidgin
++ "QQ国际版" Exec exec  /usr/bin/wine-qqintl
++ "Skype for Linux Alpha" Exec exec  /opt/bin/skypeforlinux
++ "Steam" Exec exec  /usr/bin/steam 
++ "Telegram Desktop" Exec exec  -- 
++ "Web" Exec exec  epiphany 
++ "uGet" Exec exec  uget-gtk 
+
+DestroyMenu "办公"
+AddToMenu "办公" "办公" Title
++ "Evolution" Exec exec  evolution 
++ "字典" Exec exec  gnome-dictionary
++ "日历" Exec exec  gnome-calendar
++ "联系人" Exec exec  gnome-contacts
+
+DestroyMenu "图形"
+AddToMenu "图形" "图形" Title
++ "FontForge" Exec exec  fontforge 
++ "Shotwell" Exec exec  shotwell 
++ "UFRaw" Exec exec  ufraw 
+
+DestroyMenu "工具"
+AddToMenu "工具" "工具" Title
++ "优化工具" Exec exec  gnome-tweak-tool
++ "图像查看器" Exec exec  eog 
++ "字体查看器" Exec exec  gnome-font-viewer 
++ "字符" Exec exec  gapplication launch org.gnome.Characters
++ "字符映射表" Exec exec  gucharmap
++ "密码和密钥" Exec exec  /usr/bin/seahorse
++ "帮助" Exec exec  yelp 
++ "归档管理器" Exec exec  file-roller 
++ "截图" Exec exec  gnome-screenshot --interactive
++ "文档查看器" Exec exec  evince 
++ "磁盘" Exec exec  gnome-disks
++ "磁盘使用情况分析器" Exec exec  baobab
++ "系统日志" Exec exec  gnome-system-log
++ "系统监视器" Exec exec  gnome-system-monitor
++ "远程桌面查看器" Exec exec  vinagre 
+
+DestroyMenu "影音"
+AddToMenu "影音" "影音" Title
++ "Brasero" Exec exec  brasero 
++ "PNMixer" Exec exec  pnmixer
++ "mpv Media Player" Exec exec  mpv --profile=pseudo-gui -- 
++ "茄子" Exec exec  cheese
++ "视频" Exec exec  totem 
++ "音乐" Exec exec  gnome-music
++ "音乐榨汁机" Exec exec  sound-juicer 
+
+DestroyMenu "杂项"
+AddToMenu "杂项" "杂项" Title
++ "IBus 首选项" Exec exec  ibus-setup
++ "屏幕阅读器" Exec exec  orca --replace
++ "电源统计" Exec exec  gnome-power-statistics
++ "网络连接" Exec exec  nm-connection-editor
++ "配置编辑器" Exec exec  gconf-editor
+
+DestroyMenu "游戏"
+AddToMenu "游戏" "游戏" Title
++ "Hitori" Exec exec  hitori
++ "Minecraft" Exec exec  java -jar /home/wood/.minecraft/launcher.jar
++ "Steam" Exec exec  /usr/bin/steam 
++ "Taquin" Exec exec  gnome-taquin
++ "俄罗斯方块" Exec exec  quadrapassel
++ "关灯" Exec exec  lightsoff
++ "华容道" Exec exec  gnome-klotski
++ "四子连线" Exec exec  four-in-a-row
++ "四邻" Exec exec  gnome-tetravex
++ "国际象棋" Exec exec  gnome-chess
++ "对对碰" Exec exec  gnome-mahjongg
++ "扫雷" Exec exec  gnome-mines
++ "掷骰子" Exec exec  tali
++ "数独" Exec exec  gnome-sudoku
++ "机器人" Exec exec  gnome-robots
++ "消色块" Exec exec  swell-foop
++ "贪食蛇" Exec exec  gnome-nibbles
++ "连珠消球" Exec exec  five-or-more
++ "黑白棋" Exec exec  iagno
+
+DestroyMenu "系统工具"
+AddToMenu "系统工具" "系统工具" Title
++ "Fcitx" Exec exec  fcitx
++ "GNOME 系统监视器" Exec exec  gnome-system-monitor
++ "Htop" Exec exec  htop
++ "Sakura" Exec exec  sakura
++ "Tilda" Exec exec  /usr/bin/tilda
++ "dconf 系统配置编辑器" Exec exec  dconf-editor
++ "rxvt-unicode" Exec exec  urxvt
++ "打印机管理" Exec exec  /usr/bin/xdg-open http://localhost:631/
++ "文件管理器 PCManFM" Exec exec  pcmanfm 
++ "终端" Exec exec  gnome-terminal
++ "网络工具" Exec exec  gnome-nettool
++ "设置" Exec exec  gnome-control-center --overview
++ "配置查看器" Exec exec  gcm-viewer
++ "面板 tint2" Exec exec  tint2
+
+DestroyMenu "编程"
+AddToMenu "编程" "编程" Title
++ "Visual Studio Code" Exec exec  visual-studio-code 
++ "sandbox" Exec exec  sandbox
+
+DestroyMenu "附件"
+AddToMenu "附件" "附件" Title
++ "compton" Exec exec  compton
++ "图书" Exec exec  gnome-books
++ "天气" Exec exec  gapplication launch org.gnome.Weather.Application
++ "搜索文件..." Exec exec  gnome-search-tool
++ "文件" Exec exec  nautilus --new-window 
++ "文本编辑器" Exec exec  gedit 
++ "文档" Exec exec  gnome-documents
++ "桌面搜索" Exec exec  tracker-needle
++ "照片" Exec exec  gnome-photos
++ "计算器" Exec exec  gnome-calculator
+
+DestroyMenu "其它"
+AddToMenu "其它" "其它" Title
++ "Fcitx 配置" Exec exec  fcitx-configtool
++ "NVIDIA X Server Settings" Exec exec  /usr/bin/nvidia-settings
++ "优先使用的应用程序" Exec exec  libfm-pref-apps
++ "打印设置" Exec exec  system-config-printer
++ "搜索和索引" Exec exec  tracker-preferences
++ "桌面偏好设置" Exec exec  pcmanfm --desktop-pref
++ "自定义外观和体验" Exec exec  lxappearance

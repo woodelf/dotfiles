@@ -1,0 +1,196 @@
+# colors@cde
+
+# more details and comments can be found in colors@default
+# I.   FVWM Colorsets
+# II.  Module Colorsets
+# III. Application Colorsets
+# IV.  Start/Stop Functions
+
+  # expand macros even in comments; needed for #rrggbb colors
+# load the CDE_COLOR* using m4 (optimized for GNU m4)
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# ----------------------------------------------------------------------------
+# I. FVWM Colorsets
+
+# ----------------
+# Default colorset
+
+Colorset 0 fg white, bg #9900991b99fe, Plain, NoShape
+
+# ------------------
+# Window decorations
+
+# window title, inactive and active
+Colorset 1 fg white, bg #9900991b99fe, Plain, NoShape
+Colorset 2 fg white, bg #ed00a8007000, Plain, NoShape
+
+# window borders, inactive and active
+Colorset 3 fg white, bg #9900991b99fe, Plain, NoShape
+Colorset 4 fg white, bg #ed00a8007000, Plain, NoShape
+
+# background for window title, buttons and border
+DestroyFunc FuncFvwmDecorBackground
+AddToFunc   FuncFvwmDecorBackground
++ I TitleStyle	AllInactive Colorset 1 -- Raised
++ I TitleStyle	AllActive   Colorset 2 -- Raised
+#
++ I ButtonStyle	All Simple -- UseTitleStyle
+
+# -----
+# Menus
+
+# inactive menu item fg+bg and menu face
+Colorset 5 fg white, bg #9900991b99fe, Plain, NoShape
+
+# active menu item fg+bg
+Colorset 6 fg white, bg #89559808aa00, Plain, NoShape
+
+# greyed menu item fg
+Colorset 7 fg #68006f008200, bg #68006f008200, Plain, NoShape
+
+# ----------------------------------------------------------------------------
+# II. Module Colorsets
+
+# ----------------
+# Common Colorsets
+
+# default for modules
+Colorset 10 fg white, bg #c600b2d2a87e, Plain, NoShape
+
+# default hilight
+Colorset 11 fg white, bg #ed00a8007000, Plain, NoShape
+
+# special
+Colorset 12 fg white, bg #ed00a8007000, \
+	VGradient 26 #ed00a8007000 #9900991b99fe, NoShape
+
+# swallowed window
+Colorset 13 fg white, bg #c600b2d2a87e, \
+	hi white, sh #ed00a8007000, Plain, NoShape
+
+# default2 (FvwmPager or to get more colors in Buttons)
+Colorset 14 fg white, bg #c600b2d2a87e, Plain, NoShape
+
+# default hilight2: (FvwmPager or to get more colors in a Buttons)
+Colorset 15 fg white, bg #89559808aa00, Plain, NoShape
+
+# tips/balloons
+Colorset 16 fg white, bg #9900991b99fe, Plain, NoShape
+
+# ----------------------------
+# Window List Module Colorsets
+
+# standard item
+Colorset 17 fg white, bg #b70087008d00, Plain, NoShape
+
+# active item
+Colorset 18 fg white, bg #ed00a8007000, Plain, NoShape
+
+# iconified item
+Colorset 19 fg white, bg #9900991b99fe, Plain, NoShape
+
+# pointed item
+Colorset 20 fg white, bg #938eab73bf00, Plain, NoShape
+
+# ----------------------
+# Other Module Colorsets
+
+# FvwmIdent
+Colorset 21 fg white, bg #49009200a700, Plain, NoShape
+
+# FvwmConsole
+Colorset 22 fg white, bg #49009200a700, Plain, NoShape
+
+# ----------------------------------------------------------------------------
+# III. Application Colorsets
+
+# regular terminal
+Colorset 30 fg white, bg #68006f008200, Plain, NoShape
+
+# admin terminal
+Colorset 31 fg white, bg #49009200a700, Plain, NoShape
+
+# remote terminal
+Colorset 32 fg white, bg #b70087008d00, Plain, NoShape
+
+# viewer terminal
+Colorset 33 fg white, bg #c600b2d2a87e, Plain, NoShape
+
+# application run in the terminal, text editor
+Colorset 34 fg white, bg #68006f008200, Plain, NoShape
+
+# dialog main area
+Colorset 35 fg white, bg #49009200a700, Plain, NoShape
+
+# dialog text area
+Colorset 36 fg white, bg #68006f008200, Plain, NoShape
+
+# ----------------------------------------------------------------------------
+# IV. Start/Stop Functions
+
+
+DestroyFunc FuncFvwmStartColors
+AddToFunc   FuncFvwmStartColors
++ I DestroyFunc FuncFvwmShowColourTable
++ I AddToFunc   FuncFvwmShowColourTable
++ I + I FvwmButtons FvwmButtons-ColourTable
+
+DestroyFunc FuncFvwmStopColors
+AddToFunc   FuncFvwmStopColors
++ I FuncFvwmStopModuleByAlias FvwmButtons FvwmButtons-ColourTable
++ I DestroyModuleConfig FvwmButtons-ColourTable: *
++ I DestroyFunc FuncFvwmToggleColorsFile
++ I DestroyFunc FuncFvwmShowColourTable
++ I AddToFunc   FuncFvwmShowColourTable
++ I + I FuncFvwmNoColourTable
+
+DestroyFunc FuncFvwmToggleColorsFile
+AddToFunc   FuncFvwmToggleColorsFile
++ I None ("* - /usr/share/fvwm/themes/cde/colors/schemes/Default.dp") FuncFvwmViewFile "/usr/share/fvwm/themes/cde/colors/schemes/Default.dp"
++ I Next ("* - /usr/share/fvwm/themes/cde/colors/schemes/Default.dp") Delete
+
+*FvwmButtons-ColourTable: Frame       0
+#*FvwmButtons-ColourTable: Geometry    260x36+0+0
+*FvwmButtons-ColourTable: Geometry    324x44
+*FvwmButtons-ColourTable: Rows        1
+*FvwmButtons-ColourTable: Columns     8
+*FvwmButtons-ColourTable: BoxSize     fixed
+*FvwmButtons-ColourTable: Padding     0 0
+*FvwmButtons-ColourTable: (Title [1], Back #ed00a8007000, Fore white, \
+	Action FuncFvwmToggleColorsFile)
+*FvwmButtons-ColourTable: (Title [2], Back #9900991b99fe, Fore white, \
+	Action FuncFvwmToggleColorsFile)
+*FvwmButtons-ColourTable: (Title [3], Back #89559808aa00, Fore white, \
+	Action FuncFvwmToggleColorsFile)
+*FvwmButtons-ColourTable: (Title [4], Back #68006f008200, Fore white, \
+	Action FuncFvwmToggleColorsFile)
+*FvwmButtons-ColourTable: (Title [5], Back #c600b2d2a87e, Fore white, \
+	Action FuncFvwmToggleColorsFile)
+*FvwmButtons-ColourTable: (Title [6], Back #49009200a700, Fore white, \
+	Action FuncFvwmToggleColorsFile)
+*FvwmButtons-ColourTable: (Title [7], Back #b70087008d00, Fore white, \
+	Action FuncFvwmToggleColorsFile)
+*FvwmButtons-ColourTable: (Title [8], Back #938eab73bf00, Fore white, \
+	Action FuncFvwmToggleColorsFile)
+

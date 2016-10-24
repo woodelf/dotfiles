@@ -1,0 +1,130 @@
+########## General Configuration ##########
+ImagePath /usr/share/icons/fvwm
+
+########## Autostart Functions ###########
+DestroyFunc StartFunction
+AddtoFunc StartFunction
++ I Module FvwmAnimate
++ I Module FvwmButtons
++ I Exec fcitx &
++ I Exec feh --bg-scale /usr/share/pixmaps/gentoo/misc/emergence-1280x960.jpg
++ I Exec trayer-srg --edge bottom --align right --widthtype request --heighttype pixel --height 20 --distancefrom right --distance 74 --expand true --tint 0xFFFFFFFF --transparent true --alpha 0 & 
+
+DestroyFunc InitFunction
+AddtoFunc InitFunction
++ I Module FvwmTaskBar
++ I Exec nm-applet &
++ I Exec pnmixer &
+
+DestroyFunc RestartFunction
+AddtoFunc RestartFunction
++ I Module FvwmTaskBar
+
+########## Styles ##########
+# Font settings
+Style * Font "xft:WenQuanYi MicroHei Mono:Regular:size=10"
+Style * IconFont "xft:WenQuanYi MicroHei Mono:Regular:size=10"
+
+# Mouse and focus behavior
+ClickTime 350
+MoveThreshold 3
+Style * ClickToFocus
+
+# Window settings
+Style * BorderWidth 5, HandleWidth 5, DepressableBorder
+Style * MWMFunctions, MWMDecor, MWMButtons, HintOverride
+Style * ResizeHintOverride
+Style * DecorateTransient, NoPPosition
+Style * WindowShadeShrinks, WindowShadeSteps 100
+EwmhBaseStruts 0 0 0 20
+
+########## Colorset ##########
+Colorset 3 fg White, bg #9370db
+Colorset 4 fg White, bg #908090
+Colorset 23 RootTransparent buffer, fg rgb:ff/ff/c4, bg average, Tint black 20, bgTint black 20
+Style * Colorset 4, HilightColorset 3
+MenuStyle * MenuColorset 23
+
+########## Window Decorations ##########
+Mouse 1 6 A Iconify
+Mouse 1 4 A Maximize 100 100
+Mouse 1 2 A Close
+
+ButtonStyle All -- UseTitleStyle
+ButtonStyle All ActiveDown VGradient 8 palevioletred black
+ButtonStyle 2 16 20x20@1 30x20@1 50x40@1 70x20@1 80x20@1 80x30@0 \
+					60x50@0 80x80@0 70x80@0 50x60@0 30x80@0 20x80@0 \
+						20x70@0 40x50@1 20x30@0 20x20@1
+
+########## Animate ##########
+*FvwmAnimate: Delay 25
+*FvwmAnimate: Effect Random
+*FvwmAnimate: Width 3
+
+########## Virtual Desktop ##########
+DesktopSize 3x3
+EdgeScroll 0 0
+EdgeResistance 0 0
+EdgeThickness 1
+
+########## Pager ##########
+# Pager style
+Style FvwmPager NoTitle, !Handles, Borderwidth 5, Sticky, WindowListSkip, CirculateSkip, StaysOnBottom, FixedPosition, FixedSize, !Iconifiable
+*FvwmPager: Geometry -1+1
+*FvwmPager: Balloons All
+*FvwmPager: BallonYOffset +2
+*FvwmPagerBalloonBorderWidth  1
+*FvwmPagerBalloonBorderColor  Black
+*FvwmPager: Window3DBorders
+*FvwmPager: MiniIcons
+*FvwmPager: UseSkipList
+*FvwmPager: DeskHilight
+
+# Layout settings
+*FvwmPager: Rows 1
+*FvwmPager: Columns 1
+
+# Font settings
+*FvwmPager: Font "xft:WenQuanYi MicroHei Mono:Regular:size=10"
+*FvwmPager: SmallFont "xft:WenQuanYi MicroHei Mono:Regular:size=10"
+*FvwmPager: BalloonFont "xft:WenQuanYi MicroHei Mono:Regular:size=10"
+
+# Color settings
+*FvwmPagerBack #908090
+*FvwmPagerFore #484048
+*FvwmPagerHilight #cab3ca
+
+# Misc
+*FvwmPager: Label 0 FVWM
+Module FvwmPager *
+
+########## Taskbar ##########
+Style FvwmTaskBar NoTitle, !Handles, !Borders, Sticky, WindowListSkip, CirculateSkip, StaysOnBottom, FixedPosition, FixedSize, !Iconifiable
+*FvwmTaskBar: UseSkipList
+*FvwmTaskBar: AutoStick
+*FvwmTaskBar: DeskOnly
+*FvwmTaskBar: PageOnly
+#*FvwmTaskBar: 3DFvwm
+*FvwmTaskBar: StartName FVWM
+*FvwmTaskBar: StartMenu FvwmMenu
+*FvwmTaskBar: Font "xft:WenQuanYi MicroHei Mono:Regular:size=10"
+*FvwmTaskBar: SelFont "xft:WenQuanYi MicroHei Mono:Regular:size=10"
+*FvwmTaskBar: StatusFont "xft:WenQuanYi MicroHei Mono:Regular:size=10"
+*FvwmTaskBar: ShowTips
+*FvwmTaskBar: WindowButtonsRightMargin 20
+*FvwmTaskBar: Button Icon mini.nscape.xpm, Action exec exec /usr/bin/firefox
+*FvwmTaskBar: Button Icon mini.xterm.xpm, Action exec exec /usr/bin/sakura
+
+########## Key Bindings ##########
+Key 1 A M GotoPage 0 0
+Key 2 A M GotoPage 1 0
+Key 3 A M GotoPage 2 0
+Key 4 A M GotoPage 0 1
+Key 5 A M GotoPage 1 1
+Key 6 A M GotoPage 2 1
+Key 7 A M GotoPage 0 2
+Key 8 A M GotoPage 1 2
+Key 9 A M GotoPage 2 2
+
+########## Menus ##########
+Read menus
