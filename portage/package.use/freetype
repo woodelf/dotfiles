@@ -1,1 +1,1 @@
-media-libs/freetype infinality
+media-libs/freetype -cleartype_hinting infinality

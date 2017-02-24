@@ -1,10 +1,6 @@
-########## Menus ##########
-# Menu styles
-MenuStyle * Font "xft:WenQuanYi MicroHei Mono:Regular:size=10"
-
-# FVWM menus
 DestroyMenu "FvwmMenu"
-AddToMenu "FvwmMenu" "FvwmMenu" Title
+AddToMenu "FvwmMenu"
++ "Windows 程序" Popup "Windows 程序"
 + "互联网" Popup "互联网"
 + "办公" Popup "办公"
 + "图形" Popup "图形"
@@ -19,36 +15,48 @@ AddToMenu "FvwmMenu" "FvwmMenu" Title
 + "" Nop
 + "$[gt.Regenerate XDG Menu(s)]" Module FvwmPerl -l fvwm-menu-desktop-config.fpl
 
+DestroyMenu "Windows 程序"
+AddToMenu "Windows 程序"
++ "腾讯QQ" Exec exec  "/home/wood/.cxoffice/腾讯_QQ_8.9/desktopdata/cxmenu/StartMenu.C^5E3A_users_crossover_Start^2BMenu/Programs/腾讯QQ.lnk" 
+
 DestroyMenu "互联网"
-AddToMenu "互联网" "互联网" Title
-+ "Aurora" Exec exec  firefox 
+AddToMenu "互联网"
++ "AnyDesk" Exec exec  anydesk
 + "Deluge" Exec exec  deluge-gtk 
 + "Empathy" Exec exec  empathy
 + "FileZilla" Exec exec  filezilla
 + "Google Chrome" Exec exec  /usr/bin/google-chrome-stable 
++ "Mozilla Firefox" Exec exec  firefox 
 + "Pidgin 互联网通讯程序" Exec exec  pidgin
-+ "QQ国际版" Exec exec  /usr/bin/wine-qqintl
 + "Skype for Linux Alpha" Exec exec  /opt/bin/skypeforlinux
++ "Spicy" Exec exec  spicy
 + "Steam" Exec exec  /usr/bin/steam 
-+ "Telegram Desktop" Exec exec  -- 
++ "Telegram Desktop" Exec exec  /usr/bin/telegram-desktop -- 
++ "Telegram Desktop" Exec exec  /usr/bin/telegram-desktop -- 
++ "Transmission" Exec exec  transmission-gtk 
 + "Web" Exec exec  epiphany 
++ "Zenmap" Exec exec  zenmap 
++ "Zenmap (as root)" Exec exec  /usr/share/zenmap/su-to-zenmap.sh 
 + "uGet" Exec exec  uget-gtk 
 
 DestroyMenu "办公"
-AddToMenu "办公" "办公" Title
+AddToMenu "办公"
 + "Evolution" Exec exec  evolution 
++ "Typora" Exec exec  typora 
 + "字典" Exec exec  gnome-dictionary
 + "日历" Exec exec  gnome-calendar
 + "联系人" Exec exec  gnome-contacts
 
 DestroyMenu "图形"
-AddToMenu "图形" "图形" Title
+AddToMenu "图形"
 + "FontForge" Exec exec  fontforge 
++ "MuPDF" Exec exec  mupdf 
 + "Shotwell" Exec exec  shotwell 
 + "UFRaw" Exec exec  ufraw 
++ "照片" Exec exec  gnome-photos
 
 DestroyMenu "工具"
-AddToMenu "工具" "工具" Title
+AddToMenu "工具"
 + "优化工具" Exec exec  gnome-tweak-tool
 + "图像查看器" Exec exec  eog 
 + "字体查看器" Exec exec  gnome-font-viewer 
@@ -66,25 +74,24 @@ AddToMenu "工具" "工具" Title
 + "远程桌面查看器" Exec exec  vinagre 
 
 DestroyMenu "影音"
-AddToMenu "影音" "影音" Title
+AddToMenu "影音"
 + "Brasero" Exec exec  brasero 
 + "PNMixer" Exec exec  pnmixer
-+ "mpv Media Player" Exec exec  mpv --profile=pseudo-gui -- 
++ "mpv Media Player" Exec exec  mpv --player-operation-mode=pseudo-gui -- 
 + "茄子" Exec exec  cheese
 + "视频" Exec exec  totem 
 + "音乐" Exec exec  gnome-music
 + "音乐榨汁机" Exec exec  sound-juicer 
 
 DestroyMenu "杂项"
-AddToMenu "杂项" "杂项" Title
+AddToMenu "杂项"
++ "Adobe Flash Player" Exec exec  flash-player-properties
 + "IBus 首选项" Exec exec  ibus-setup
-+ "屏幕阅读器" Exec exec  orca --replace
-+ "电源统计" Exec exec  gnome-power-statistics
 + "网络连接" Exec exec  nm-connection-editor
 + "配置编辑器" Exec exec  gconf-editor
 
 DestroyMenu "游戏"
-AddToMenu "游戏" "游戏" Title
+AddToMenu "游戏"
 + "Hitori" Exec exec  hitori
 + "Minecraft" Exec exec  java -jar /home/wood/.minecraft/launcher.jar
 + "Steam" Exec exec  /usr/bin/steam 
@@ -106,29 +113,33 @@ AddToMenu "游戏" "游戏" Title
 + "黑白棋" Exec exec  iagno
 
 DestroyMenu "系统工具"
-AddToMenu "系统工具" "系统工具" Title
+AddToMenu "系统工具"
 + "Fcitx" Exec exec  fcitx
 + "GNOME 系统监视器" Exec exec  gnome-system-monitor
 + "Htop" Exec exec  htop
 + "Sakura" Exec exec  sakura
 + "Tilda" Exec exec  /usr/bin/tilda
++ "Tint2" Exec exec  tint2
++ "Zenmap" Exec exec  zenmap 
++ "Zenmap (as root)" Exec exec  /usr/share/zenmap/su-to-zenmap.sh 
 + "dconf 系统配置编辑器" Exec exec  dconf-editor
 + "rxvt-unicode" Exec exec  urxvt
 + "打印机管理" Exec exec  /usr/bin/xdg-open http://localhost:631/
 + "文件管理器 PCManFM" Exec exec  pcmanfm 
++ "电源统计" Exec exec  gnome-power-statistics
 + "终端" Exec exec  gnome-terminal
 + "网络工具" Exec exec  gnome-nettool
++ "虚拟系统管理器" Exec exec  virt-manager
 + "设置" Exec exec  gnome-control-center --overview
 + "配置查看器" Exec exec  gcm-viewer
-+ "面板 tint2" Exec exec  tint2
 
 DestroyMenu "编程"
-AddToMenu "编程" "编程" Title
+AddToMenu "编程"
 + "Visual Studio Code" Exec exec  visual-studio-code 
 + "sandbox" Exec exec  sandbox
 
 DestroyMenu "附件"
-AddToMenu "附件" "附件" Title
+AddToMenu "附件"
 + "compton" Exec exec  compton
 + "图书" Exec exec  gnome-books
 + "天气" Exec exec  gapplication launch org.gnome.Weather.Application
@@ -137,15 +148,17 @@ AddToMenu "附件" "附件" Title
 + "文本编辑器" Exec exec  gedit 
 + "文档" Exec exec  gnome-documents
 + "桌面搜索" Exec exec  tracker-needle
-+ "照片" Exec exec  gnome-photos
 + "计算器" Exec exec  gnome-calculator
 
 DestroyMenu "其它"
-AddToMenu "其它" "其它" Title
+AddToMenu "其它"
++ "CrossOver" Exec exec  /opt/cxoffice/bin/crossover 
 + "Fcitx 配置" Exec exec  fcitx-configtool
 + "NVIDIA X Server Settings" Exec exec  /usr/bin/nvidia-settings
++ "Uninstall CrossOver Linux" Exec exec  /opt/cxoffice/bin/cxuninstall 
 + "优先使用的应用程序" Exec exec  libfm-pref-apps
 + "打印设置" Exec exec  system-config-printer
 + "搜索和索引" Exec exec  tracker-preferences
 + "桌面偏好设置" Exec exec  pcmanfm --desktop-pref
 + "自定义外观和体验" Exec exec  lxappearance
+
