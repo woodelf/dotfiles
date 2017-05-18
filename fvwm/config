@@ -1,5 +1,5 @@
 ########## General Configuration ##########
-ImagePath /usr/share/icons/fvwm
+ImagePath /usr/share/icons/hicolor/32x32/apps:/usr/share/icons/Adwaita/32x32/apps
 
 ########## Autostart Functions ###########
 DestroyFunc StartFunction
@@ -8,17 +8,16 @@ AddtoFunc StartFunction
 + I Module FvwmButtons
 + I Exec fcitx &
 + I Exec feh --bg-scale /usr/share/pixmaps/gentoo/misc/emergence-1280x960.jpg
-+ I Exec trayer-srg --edge bottom --align right --widthtype request --heighttype pixel --height 20 --distancefrom right --distance 74 --expand true --tint 0xFFFFFFFF --transparent true --alpha 0 & 
+#+ I Exec trayer-srg --edge bottom --align right --widthtype request --heighttype pixel --height 20 --distancefrom right --distance 74 --expand true --tint 0xFFFFFFFF --transparent true --alpha 0
 
 DestroyFunc InitFunction
 AddtoFunc InitFunction
-+ I Module FvwmTaskBar
-+ I Exec nm-applet &
++ I Exec cmst &
 + I Exec pnmixer &
 
 DestroyFunc RestartFunction
 AddtoFunc RestartFunction
-+ I Module FvwmTaskBar
++ I Module FvwmButtons
 
 ########## Styles ##########
 # Font settings
@@ -36,7 +35,7 @@ Style * MWMFunctions, MWMDecor, MWMButtons, HintOverride
 Style * ResizeHintOverride
 Style * DecorateTransient, NoPPosition
 Style * WindowShadeShrinks, WindowShadeSteps 100
-EwmhBaseStruts 0 0 0 20
+EwmhBaseStruts 0 0 0 48
 
 ########## Colorset ##########
 Colorset 3 fg White, bg #9370db
@@ -49,6 +48,7 @@ MenuStyle * MenuColorset 23
 Mouse 1 6 A Iconify
 Mouse 1 4 A Maximize 100 100
 Mouse 1 2 A Close
+Mouse 0 I A Iconify
 
 ButtonStyle All -- UseTitleStyle
 ButtonStyle All ActiveDown VGradient 8 palevioletred black
@@ -62,15 +62,15 @@ ButtonStyle 2 16 20x20@1 30x20@1 50x40@1 70x20@1 80x20@1 80x30@0 \
 *FvwmAnimate: Width 3
 
 ########## Virtual Desktop ##########
-DesktopSize 3x3
+DesktopSize 4x1
 EdgeScroll 0 0
 EdgeResistance 0 0
 EdgeThickness 1
 
 ########## Pager ##########
 # Pager style
-Style FvwmPager NoTitle, !Handles, Borderwidth 5, Sticky, WindowListSkip, CirculateSkip, StaysOnBottom, FixedPosition, FixedSize, !Iconifiable
-*FvwmPager: Geometry -1+1
+Style FvwmPager NoTitle, !Handles, !Borders, Sticky, WindowListSkip, CirculateSkip, StaysOnBottom, FixedPosition, FixedSize, !Iconifiable
+#*FvwmPager: Geometry -1+1
 *FvwmPager: Balloons All
 *FvwmPager: BallonYOffset +2
 *FvwmPagerBalloonBorderWidth  1
@@ -85,7 +85,8 @@ Style FvwmPager NoTitle, !Handles, Borderwidth 5, Sticky, WindowListSkip, Circul
 *FvwmPager: Columns 1
 
 # Font settings
-*FvwmPager: Font "xft:WenQuanYi MicroHei Mono:Regular:size=10"
+#*FvwmPager: Font "xft:WenQuanYi MicroHei Mono:Regular:size=10"
+*FvwmPager: Font none
 *FvwmPager: SmallFont "xft:WenQuanYi MicroHei Mono:Regular:size=10"
 *FvwmPager: BalloonFont "xft:WenQuanYi MicroHei Mono:Regular:size=10"
 
@@ -95,40 +96,36 @@ Style FvwmPager NoTitle, !Handles, Borderwidth 5, Sticky, WindowListSkip, Circul
 *FvwmPagerHilight #cab3ca
 
 # Misc
-*FvwmPager: Label 0 FVWM
-Module FvwmPager *
+#*FvwmPager: Label 0 FVWM
 
-########## Taskbar ##########
-Style FvwmTaskBar NoTitle, !Handles, !Borders, Sticky, WindowListSkip, CirculateSkip, StaysOnBottom, FixedPosition, FixedSize, !Iconifiable
-*FvwmTaskBar: UseSkipList
-*FvwmTaskBar: AutoStick
-*FvwmTaskBar: DeskOnly
-*FvwmTaskBar: PageOnly
-#*FvwmTaskBar: 3DFvwm
-*FvwmTaskBar: StartName FVWM
-*FvwmTaskBar: StartMenu FvwmMenu
-*FvwmTaskBar: Font "xft:WenQuanYi MicroHei Mono:Regular:size=10"
-*FvwmTaskBar: SelFont "xft:WenQuanYi MicroHei Mono:Regular:size=10"
-*FvwmTaskBar: StatusFont "xft:WenQuanYi MicroHei Mono:Regular:size=10"
-*FvwmTaskBar: ShowTips
-*FvwmTaskBar: WindowButtonsRightMargin 20
-*FvwmTaskBar: Button Icon mini.nscape.xpm, Action exec exec /usr/bin/firefox
-*FvwmTaskBar: Button Icon mini.xterm.xpm, Action exec exec /usr/bin/sakura
+########## Button Box ##########
+Style FvwmButtons NoTitle, !Handles, !Borders, Sticky, WindowListSkip, CirculateSkip, StaysOnBottom, FixedPosition, FixedSize, !Iconifiable
+*FvwmButtonsGeometry 672x48+624-0
+*FvwmButtons: Rows 1
+*FvwmButtons: Columns 14
+*FvwmButtons: Font "xft:WenQuanYi MicroHei Mono:Regular:size=10"
+*FvwmButtons: (1x1, Icon firefox.png, Action (Mouse1) Exec firefox)
+*FvwmButtons: (1x1, Icon google-chrome.png, Action (Mouse1) Exec google-chrome)
+*FvwmButtons: (1x1, Icon utilities-terminal.png, Action (Mouse1) Exec sakura)
+*FvwmButtons: (1x1, Icon system-file-manager.png, Action (Mouse1) Exec pcmanfm)
+*FvwmButtons: (4x1, Swallow(UseOld, NoClose) "FvwmPager" "FvwmPager 0 0")
+*FvwmButtons: (4x1, Swallow(UseOld, NoClose) "stalonetray" 'Exec exec stalonetray')
+*FvwmButtons: (2x1, Swallow XClock 'Exec xclock -d -update 1 \
+		-strftime '%H:%M:%S' -bg rgb:90/80/90 -geometry -3000-3000 &')
 
 ########## Key Bindings ##########
 # Switch workspace
 Key 1 A M GotoPage 0 0
 Key 2 A M GotoPage 1 0
 Key 3 A M GotoPage 2 0
-Key 4 A M GotoPage 0 1
-Key 5 A M GotoPage 1 1
-Key 6 A M GotoPage 2 1
-Key 7 A M GotoPage 0 2
-Key 8 A M GotoPage 1 2
-Key 9 A M GotoPage 2 2
+Key 4 A M GotoPage 3 0
+Key 5 A M GotoPage 4 0
 
 # Run xterm
-Key t A M Exec xterm
+Key t A M Exec sakura
+
+# Run dmenu
+Key d A M Exec dmenu_run
 
 ########## Menus ##########
 # Menu styles
