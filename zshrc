@@ -2,9 +2,9 @@
 # Gentoo style prompt settings
 precmd() {
 	if [ $UID -eq 0 ]; then
-		PROMPT="%{%F{red}%}%B%M %{%F{blue}%}~ #%b %{%F{white}%}"
+		PROMPT="%{%F{red}%}%B%M %{%F{blue}%}%~ #%b %{%F{white}%}"
 	else
-		PROMPT="%{%F{green}%}%B%n@%M %{%F{blue}%}~ $%b %{%F{white}%}"
+		PROMPT="%{%F{green}%}%B%n@%M %{%F{blue}%}%~ $%b %{%F{white}%}"
 	fi
 	# CLear last command
 	#if [[ $TERM == screen* ]]; then
