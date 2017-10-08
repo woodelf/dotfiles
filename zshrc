@@ -1,80 +1,227 @@
-# Path to your oh-my-zsh installation.
-export ZSH=$HOME/.oh-my-zsh
+#{{{ Prompt, Titlebar and Taskbar Settings
+# Gentoo style prompt settings
+precmd() {
+	if [ $UID -eq 0 ]; then
+		PROMPT="%{%F{red}%}%B%M %{%F{blue}%}~ #%b %{%F{white}%}"
+	else
+		PROMPT="%{%F{green}%}%B%n@%M %{%F{blue}%}~ $%b %{%F{white}%}"
+	fi
+	# CLear last command
+	#if [[ $TERM == screen* ]]; then
+	#	print -Pn "\ek%30<..<%~%<<\e\\"
+	#fi
+}
 
-# Set name of the theme to load.
-# Look in ~/.oh-my-zsh/themes/
-# Optionally, if you set this to "random", it'll load a random theme each
-# time that oh-my-zsh is loaded.
-ZSH_THEME="gentoo"
+case $TERM {
+    (screen*)
+    preexec() {
+        print -Pn "\ek%30>..>${1/[\\\%]*/@@@}%<<\e\\"
+    }
+    ;;
 
-# Uncomment the following line to use case-sensitive completion.
-CASE_SENSITIVE="true"
+    (xterm*)
+    preexec() {
+        print -Pn "\e]0;%~$ ${1/[\\\%]*/@@@}\a"
+    }
+    ;;
+}
+#}}}
 
-# Uncomment the following line to disable bi-weekly auto-update checks.
-# DISABLE_AUTO_UPDATE="true"
+#{{{ History Settings
+# Set history size
+export HISTSIZE=10000
+# Set saved history
+export SAVEHIST=10000
+# Set history file
+export HISTFILE=~/.zsh_history
+# Share history in multiple sessions
+setopt SHARE_HISTORY
+# Remove duplication history
+setopt HIST_IGNORE_DUPS
+# Ignore commands with leading space
+setopt HIST_IGNORE_SPACE
+# Enable timestamp by default
+setopt EXTENDED_HISTORY
+# Append history instead of replacing
+setopt INC_APPEND_HISTORY
+# Extended glob
+setopt EXTENDED_GLOB
+# Do not change backgroud niceness
+setopt NO_BG_NICE
+# Disable beep
+unsetopt BEEP
+#}}}
 
-# Uncomment the following line to change how often to auto-update (in days).
-export UPDATE_ZSH_DAYS=7
+#{{{ Key Bindings
+# Function key bindings
+bindkey "\e[1~"	  beginning-of-line
+bindkey "\e[2~"   insert-last-word
+bindkey "\e[3~"   delete-char
+bindkey "\e[4~"   end-of-line
+bindkey "\e[5~"   backward-word
+bindkey "\e[6~"   forward-word
+bindkey "\e[7~"   beginning-of-line
+bindkey "\e[8~"   end-of-line
+bindkey "\e[A"    up-line-or-search
+bindkey "\e[B"    down-line-or-search
+bindkey "\e[C"    forward-char
+bindkey "\e[D"    backward-char
+bindkey "\eOH"    beginning-of-line
+bindkey "\eOF"    end-of-line
+bindkey "\e[H"    beginning-of-line
+bindkey "\e[F"    end-of-line
 
-# Uncomment the following line to disable colors in ls.
-# DISABLE_LS_COLORS="true"
+bindkey "^p"      up-line-or-search
+bindkey "^n"      down-line-or-search
+bindkey '^f'      forward-word
+bindkey '^b'      backward-word
+bindkey '^j'      backward-kill-word
+bindkey '^k'      kill-word
+bindkey '^u'      transpose-chars
+bindkey '^t'      quoted-insert
+bindkey '^g'      kill-line
+bindkey '^w'      backward-kill-line
+# Use vim to edit command line
+autoload -U       edit-command-line
+zle -N            edit-command-line
+bindkey '^o'      edit-command-line
+# Insert "sudo" in front of commands
+sudo-command-line() {
+    [[ -z $BUFFER ]] && zle up-history
+    [[ $BUFFER != sudo\ * ]] && BUFFER="sudo $BUFFER"
+    # Move to end of line
+    zle end-of-line
+}
 
-# Uncomment the following line to disable auto-setting terminal title.
-# DISABLE_AUTO_TITLE="true"
+zle -N sudo-command-line
+bindkey '^y'     sudo-command-line
 
-# Uncomment the following line to enable command auto-correction.
-ENABLE_CORRECTION="true"
+# ctrl + a 行首
+# ctrl + b 往左移动一个词
+# ctrl + c 发送 SIGINT 信号
+# ctrl + d 结束输入
+# ctrl + e 行尾
+# ctrl + f 往右移动一个词
+# ctrl + g 删除右边所有内容
+# ctrl + h 退格
+# ctrl + i tab
+# ctrl + j 删除左边一个词
+# ctrl + k 删除右边一个词
+# ctrl + l 清屏
+# ctrl + m 回车
+# ctrl + n 下一个历史命令
+# ctrl + o 用 vim 编辑命令行
+# ctrl + p 上一个历史命令
+# ctrl + q 恢复
+# ctrl + r 搜索历史命令
+# ctrl + s 冻结
+# ctrl + t 输入转义字符
+# ctrl + u 交换左边两个字符
+# ctrl + v 输入转义字符
+# ctrl + w 删除左边所有内容
+# ctrl + x 很多功能
+# ctrl + y 命令前添加 sudo
+# ctrl + z 休眠当前进程
+#}}}
 
-# Uncomment the following line to display red dots whilst waiting for completion.
-# COMPLETION_WAITING_DOTS="true"
+#{{{ Auto Completion Settings
+# Auto complete paths
+setopt complete_in_word
 
-# Uncomment the following line if you want to disable marking untracked files
-# under VCS as dirty. This makes repository status check for large repositories
-# much, much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
+# Deal these characters as part of the word
+WORDCHARS='*?_-[]~=&;!#$%^(){}<>'
+# Auto complete
+setopt AUTO_LIST
+setopt AUTO_MENU
+setopt MENU_COMPLETE
+# Force rehash
+_force_rehash() {
+    ((CURRENT == 1)) && rehash
+    return 1    # Because we didn't really complete anything
+}
+zstyle ':completion:::::' completer _force_rehash _complete _approximate
+# Other completions
+zstyle ':completion:*' verbose yes
+zstyle ':completion:*' menu select
+zstyle ':completion:*:*:default' force-list always
+zstyle ':completion:*' select-prompt '%SSelect:  lines: %L  matches: %M  [%p]'
+zstyle ':completion:*:match:*' original only
+zstyle ':completion::prefix-1:*' completer _complete
+zstyle ':completion:predict:*' completer _complete
+zstyle ':completion:incremental:*' completer _complete _correct
+zstyle ':completion:*' completer _complete _prefix _correct _prefix _match _approximate
+# Enable completion cache
+zstyle ':completion::complete:*' use-cache 1
+# Path completions
+zstyle ':completion:*' expand 'yes'
+zstyle ':completion:*' squeeze-slashes 'yes'
+zstyle ':completion::complete:*' '\\'
+# Colorized completion menu
+export ZLSCOLORS=$LS_COLORS
+zmodload zsh/complist
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+# Enable case correction
+zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}'
+# Enable spelling correction
+zstyle ':completion:*' completer _complete _match _approximate
+zstyle ':completion:*:match:*' original only
+zstyle ':completion:*:approximate:*' max-errors 1 numeric
+# Group completion types
+zstyle ':completion:*:matches' group 'yes'
+zstyle ':completion:*' group-name ''
+zstyle ':completion:*:options' description 'yes'
+zstyle ':completion:*:options' auto-description '%d'
+zstyle ':completion:*:descriptions' format $'\e[01;33m -- %d --\e[0m'
+zstyle ':completion:*:messages' format $'\e[01;35m -- %d --\e[0m'
+zstyle ':completion:*:warnings' format $'\e[01;31m -- No Matches Found --\e[0m'
+zstyle ':completion:*:corrections' format $'\e[01;32m -- %d (errors: %e) --\e[0m'
+# "kill" command completions
+zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
+zstyle ':completion:*:*:kill:*' menu yes select
+zstyle ':completion:*:*:*:*:processes' force-list always
+zstyle ':completion:*:processes' command 'ps -au$USER'
+# "cd ~" completions
+zstyle ':completion:*:-tilde-:*' group-order 'named-directories' 'path-directories' 'users' 'expand'
+# Empty line "cd ~" completions
+user-complete() {
+    case $BUFFER {
+        "" )
+            # 空行填入 "cd "
+            BUFFER="cd "
+            zle end-of-line
+            zle expand-or-complete
+            ;;
 
-# Uncomment the following line if you want to change the command execution time
-# stamp shown in the history command output.
-# The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
-HIST_STAMPS="yyyy-mm-dd"
+        " " )
+            BUFFER="!?"
+            zle end-of-line
+            zle expand-or-complete
+            ;;
 
-# Would you like to use another custom folder than $ZSH/custom?
-# ZSH_CUSTOM=/path/to/new-custom-folder
+        * )
+            zle expand-or-complete
+            ;;
+    }
+}
 
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
-plugins=(encode64 git git-extras sudo systemd themes tmux)
+zle -N user-complete
+bindkey "\t" user-complete
+#}}}
 
-source $ZSH/oh-my-zsh.sh
-
-# User configuration
-
-export PATH=$HOME/bin:/usr/local/bin:$PATH
-# export MANPATH="/usr/local/man:$MANPATH"
-
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
-
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
-# ssh
-# export SSH_KEY_PATH="~/.ssh/dsa_id"
-
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
+#{{{ Misc Settings
+# Load functions
+autoload -U zmv
+autoload -U zrecompile
+autoload -U compinit
+autoload -U promptinit
+# Start functions
+compinit
+promptinit; prompt gentoo
+# Alias settings
+alias ls='ls --color=auto'
+alias grep='grep --colour=auto'
+alias egrep='egrep --colour=auto'
+alias fgrep='fgrep --colour=auto'
+# FVWM settings
+export FVWM_USERDIR=~/.fvwm
+#}}}
