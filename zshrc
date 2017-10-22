@@ -1,16 +1,10 @@
 #{{{ Prompt, Titlebar and Taskbar Settings
 # Gentoo style prompt settings
-precmd() {
-	if [ $UID -eq 0 ]; then
-		PROMPT="%{%F{red}%}%B%M %{%F{blue}%}%~ #%b %{%F{white}%}"
-	else
-		PROMPT="%{%F{green}%}%B%n@%M %{%F{blue}%}%~ $%b %{%F{white}%}"
-	fi
-	# CLear last command
-	#if [[ $TERM == screen* ]]; then
-	#	print -Pn "\ek%30<..<%~%<<\e\\"
-	#fi
-}
+if [ $UID -eq 0 ]; then
+	PROMPT="%{%F{red}%}%B%M %{%F{blue}%}%~ #%b %{%F{white}%}"
+else
+	PROMPT="%{%F{green}%}%B%n@%M %{%F{blue}%}%~ $%b %{%F{white}%}"
+fi
 
 case $TERM in
     termite|*xterm*|rxvt|rxvt-unicode|rxvt-256color|rxvt-unicode-256color|(dt|k|E)term)
@@ -219,7 +213,7 @@ autoload -U compinit
 autoload -U promptinit
 # Start functions
 compinit
-promptinit; prompt gentoo
+promptinit
 # Alias settings
 alias ls='ls --color=auto'
 alias grep='grep --colour=auto'
