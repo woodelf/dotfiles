@@ -1,9 +1,9 @@
 #{{{ Prompt, Titlebar and Taskbar Settings
 # Gentoo style prompt settings
 if [ $UID -eq 0 ]; then
-	PROMPT="%{%F{red}%}%B%M %{%F{blue}%}%~ #%b %{%F{white}%}"
+	PROMPT="%{%F{red}%}%B%M %{%F{blue}%}%~ #%b %{%F%}"
 else
-	PROMPT="%{%F{green}%}%B%n@%M %{%F{blue}%}%~ $%b %{%F{white}%}"
+	PROMPT="%{%F{green}%}%B%n@%M %{%F{blue}%}%~ $%b %{%F%}"
 fi
 
 case $TERM in
