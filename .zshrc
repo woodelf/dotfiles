@@ -40,6 +40,7 @@ setopt HIST_IGNORE_SPACE
 # Enable timestamp by default
 setopt EXTENDED_HISTORY
 # Append history instead of replacing
+setopt APPEND_HISTORY
 setopt INC_APPEND_HISTORY
 # Extended glob
 setopt EXTENDED_GLOB
@@ -215,6 +216,7 @@ autoload -U promptinit
 compinit
 promptinit
 # Alias settings
+alias history='fc -il 1'
 alias ls='ls --color=auto'
 alias grep='grep --colour=auto'
 alias egrep='egrep --colour=auto'

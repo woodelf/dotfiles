@@ -39,7 +39,7 @@ set iskeyword+=_,$,@,%,#,-
 set hlsearch
 
 " Terminal color settings
-colors murphy
+colors freya 
 
 " Show current mode
 set showmode
@@ -316,3 +316,53 @@ set cot-=preview "disable doc preview in omnicomplete
 " Make CSS omnicompletion work for SASS and SCSS
 autocmd BufNewFile,BufRead *.scss             set ft=scss.css
 autocmd BufNewFile,BufRead *.sass             set ft=sass.css
+
+"----------------------
+" YCM settings
+"----------------------
+" Specify global configuration path
+let g:ycm_global_ycm_extra_conf = '/usr/share/vim/vimfiles/third_party/ycmd/examples/.ycm_extra_conf.py'
+
+" Detect warnings and errors
+let g:ycm_show_diagnostics_ui = 1
+
+" Disable preview
+let g:ycm_add_preview_to_completeopt = 0
+
+" Enable completion list
+set completeopt-=preview
+
+" Apply completion to comments
+let g:ycm_complete_in_comments = 1
+
+" Enable YCM tag file identifier
+let g:ycm_collect_identifiers_from_tags_files = 1
+
+" Shortcut settings for OmniCppComplete
+inoremap <leader>; <C-x><C-o>
+
+" Enable completion upon first character input
+let g:ycm_min_num_of_chars_for_completion = 1
+
+" Disable cache
+let g:ycm_cache_omnifunc = 0
+
+" Enable syntax completion
+let g:ycm_seed_identifiers_with_syntax = 1
+
+" Set error or warning signs
+let g:ycm_error_symbol = '✗'
+let g:ycm_warning_symbol = '⚠'
+"highlight YcmErrorSign
+highlight YcmWarningSign ctermbg=none
+"highlight YcmErrorSection
+highlight YcmWarningSection ctermbg=none
+"highlight YcmErrorLine
+"highlight YcmWarningLine
+
+"----------------------
+" NerdTree settings
+"----------------------
+" Shortcut settings
+map <F3> :NERDTreeMirror<CR>
+map <F3> :NERDTreeToggle<CR>
