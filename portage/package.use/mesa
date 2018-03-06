@@ -1,1 +1,1 @@
-media-libs/mesa gles2 opencl osmesa xvmc
+media-libs/mesa gles1 gles2 opencl openmax osmesa vulkan xa xvmc

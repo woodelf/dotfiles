@@ -1,1 +1,1 @@
-www-client/firefox custom-optimization egl
+www-client/firefox custom-optimization -pgo -rust system-harfbuzz system-icu system-jpeg system-libevent system-libvpx system-sqlite

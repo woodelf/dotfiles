@@ -1,1 +1,1 @@
-media-libs/freetype -cleartype_hinting infinality
+media-libs/freetype harfbuzz utils

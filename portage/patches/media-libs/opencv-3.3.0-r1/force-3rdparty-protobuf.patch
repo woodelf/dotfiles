@@ -1,0 +1,11 @@
+--- a/cmake/OpenCVFindLibProtobuf.cmake	2017-09-20 23:13:42.540161133 +0200
++++ b/cmake/OpenCVFindLibProtobuf.cmake	2017-09-20 23:14:22.084312485 +0200
+@@ -23,7 +23,7 @@
+ 
+ if(Protobuf_FOUND)
+   # nothing
+-else()
++#else()
+   set(Protobuf_LIBRARIES libprotobuf)
+   set(Protobuf_INCLUDE_DIRS "${OpenCV_SOURCE_DIR}/3rdparty/protobuf/src")
+   if(NOT TARGET ${Protobuf_LIBRARIES})

@@ -1,1 +1,1 @@
-net-misc/connman l2tp ofono openvpn pptp tools vpnc wispr
+net-misc/connman iptables l2tp nftables ofono openconnect openvpn pptp tools vpnc wispr
