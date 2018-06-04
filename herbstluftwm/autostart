@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # this is a simple config for herbstluftwm
 
@@ -15,14 +15,13 @@ hc keyunbind --all
 
 # keybindings
 # if you have a super key you will be much happier with Mod set to Mod4
-#Mod=Mod1    # Use alt as the main modifier
-Mod=Mod4   # Use the super key as the main modifier
+Mod=Mod1    # Use alt as the main modifier
+#Mod=Mod4   # Use the super key as the main modifier
 
-hc keybind $Mod-Shift-q quit
+hc keybind $Mod-Shift-e quit
 hc keybind $Mod-Shift-r reload
-#hc keybind $Mod-Shift-c close
-hc keybind $Mod-Shift-e close
-hc keybind $Mod-Return spawn sakura
+hc keybind $Mod-Shift-q close
+hc keybind $Mod-Return spawn sakura # use your $TERMINAL with xterm as fallback
 hc keybind $Mod-d spawn dmenu_run -b
 
 # basic movement
@@ -64,9 +63,6 @@ hc keybind $Mod-Control-Down    resize down +$resizestep
 hc keybind $Mod-Control-Up      resize up +$resizestep
 hc keybind $Mod-Control-Right   resize right +$resizestep
 
-# screenshot keybinding
-hc keybind Print spawn scrot
-
 # tags
 tag_names=( {1..9} )
 tag_keys=( {1..9} 0 )
@@ -87,10 +83,16 @@ hc keybind $Mod-comma  use_index -1 --skip-visible
 
 # layouting
 hc keybind $Mod-r remove
-hc keybind $Mod-space cycle_layout 1
 hc keybind $Mod-s floating toggle
 hc keybind $Mod-f fullscreen toggle
 hc keybind $Mod-p pseudotile toggle
+# The following cycles through the available layouts within a frame, but skips
+# layouts, if the layout change wouldn't affect the actual window positions.
+# I.e. if there are two windows within a frame, the grid layout is skipped.
+hc keybind $Mod-space                                                           \
+            or , and . compare tags.focus.curframe_wcount = 2                   \
+                     . cycle_layout +1 vertical horizontal max vertical grid    \
+               , cycle_layout +1
 
 # mouse
 hc mouseunbind --all
@@ -171,6 +173,6 @@ done
 nm-applet &
 pnmixer &
 fcitx &
-compton -cC -e 0.6 -f &
-feh --bg-scale /usr/share/pixmaps/gentoo/1600x1200/gentoo-infinity-1600x1200.jpg
+compton -b &
+feh --bg-scale /usr/share/pixmaps/gentoo/misc/emergence-1280x960.jpg
 trayer-srg --edge top --align right --widthtype request --heighttype pixel --height 16 --distancefrom right --distance 154 --expand true --tint 0x222222 --transparent true --alpha 0 &
