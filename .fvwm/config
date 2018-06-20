@@ -8,11 +8,10 @@ AddtoFunc StartFunction
 + I Module FvwmButtons
 + I Exec fcitx &
 + I Exec feh --bg-scale /usr/share/pixmaps/gentoo/misc/emergence-1280x960.jpg
-#+ I Exec trayer-srg --edge bottom --align right --widthtype request --heighttype pixel --height 20 --distancefrom right --distance 74 --expand true --tint 0xFFFFFFFF --transparent true --alpha 0
 
 DestroyFunc InitFunction
 AddtoFunc InitFunction
-+ I Exec cmst &
++ I Exec nm-applet &
 + I Exec pnmixer &
 
 DestroyFunc RestartFunction
@@ -105,7 +104,7 @@ Style FvwmButtons NoTitle, !Handles, !Borders, Sticky, WindowListSkip, Circulate
 *FvwmButtons: Columns 14
 *FvwmButtons: Font "xft:WenQuanYi MicroHei Mono:Regular:size=10"
 *FvwmButtons: (1x1, Icon firefox.png, Action (Mouse1) Exec firefox)
-*FvwmButtons: (1x1, Icon google-chrome.png, Action (Mouse1) Exec google-chrome)
+*FvwmButtons: (1x1, Icon steam.png, Action (Mouse1) Exec steam)
 *FvwmButtons: (1x1, Icon utilities-terminal.png, Action (Mouse1) Exec sakura)
 *FvwmButtons: (1x1, Icon system-file-manager.png, Action (Mouse1) Exec pcmanfm)
 *FvwmButtons: (4x1, Swallow(UseOld, NoClose) "FvwmPager" "FvwmPager 0 0")
@@ -132,4 +131,5 @@ Key d A M Exec dmenu_run
 MenuStyle * Font "xft:WenQuanYi MicroHei Mono:Regular:size=10"
 
 # FVWM menus
-Read menus
+AddToMenu MenuFvwmRoot "FVWM" Title
+PipeRead 'fvwm-menu-desktop --insert-in-menu MenuFvwmRoot'
