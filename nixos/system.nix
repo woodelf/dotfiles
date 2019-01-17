@@ -11,4 +11,7 @@
 
   # Allow proprietary packages
   nixpkgs.config.allowUnfree = true;
+
+  # Enable extra packages
+  programs.zsh.enable = true;
 }
