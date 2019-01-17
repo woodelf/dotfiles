@@ -34,6 +34,9 @@
   #};
 
   # Kernel configuration
+  boot.kernelPackages = pkgs.linuxPackages_testing;
+  boot.kernelModules = [ "btrfs" ];
+  boot.initrd.kernelModules = [ "btrfs" ];
   boot.kernelParams = [ ];
 
   # Intel microcode configuration
