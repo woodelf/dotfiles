@@ -18,6 +18,7 @@
     };
     windowManager.i3 = {
       enable = true;
+      package = pkgs.i3-gaps;
     };
     autorun = true;
     videoDrivers = [ "intel" "nvidia" ];
