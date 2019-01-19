@@ -9,11 +9,13 @@
     isNormalUser = true;
     home = "/home/wood";
     uid = 1000;
-	shell = pkgs.zsh;
-    extraGroups = [ "wheel" "disk" "audio" "video" "users" "input" "networkmanager"];
-  };
-
-  users.extraUsers.root = {
-    shell = pkgs.zsh;
+    extraGroups = [ "audio" 
+	"disk" 
+        "input"
+	"networkmanager"
+	"users"
+	"video"
+	"wheel"
+	];
   };
 }

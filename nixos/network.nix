@@ -5,9 +5,9 @@
 {
 
   # Network configuration
-  networking.hostName = "nixos";
+  networking.hostName = "NixOS";
   networking.networkmanager.enable = true;
   
   # Wireless network configuration
-  networking.wireless.enable = true;
+  #networking.wireless.enable = true;
 }

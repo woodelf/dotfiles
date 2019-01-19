@@ -11,7 +11,7 @@
     };
     efi = {
       canTouchEfiVariables = true;
-      efiSysMountPoint = "/boot/efi";
+      efiSysMountPoint = "/boot/EFI";
     };
     grub = {
       enable = true;
@@ -34,8 +34,7 @@
   #};
 
   # Kernel configuration
-  boot.kernelPackages = pkgs.linuxPackages_testing;
-  boot.kernelModules = [ "btrfs" ];
+  #boot.kernelPackages = pkgs.linuxPackages_testing;
   boot.initrd.kernelModules = [ "btrfs" ];
   boot.kernelParams = [ ];
 
