@@ -23,6 +23,7 @@
   };
 
   # Font configuration
+  fonts.enableFontDir = true;
   fonts.fonts = with pkgs; [ wqy_microhei ];
   fonts.fontconfig.defaultFonts = {
     monospace = [ "WenQuanYi MicroHei Mono" ];
