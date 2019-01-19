@@ -12,6 +12,10 @@
     displayManager.lightdm = {
       enable = true;
     };
+    desktopManager = {
+      default = "none";
+      xterm.enable = false;
+    };
     windowManager.i3 = {
       enable = true;
     };
