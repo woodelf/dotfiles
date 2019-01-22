@@ -13,5 +13,11 @@
   nixpkgs.config.allowUnfree = true;
 
   # Enable extra packages
+  programs.dconf.enable = true;
   programs.zsh.enable = true;
+  programs.zsh.ohMyZsh = {
+    enable = true;
+    plugins = [ "git" "man" "systemd" ];
+    theme = "gentoo";
+  };
 }
