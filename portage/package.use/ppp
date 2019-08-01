@@ -1,1 +1,1 @@
-net-dialup/ppp activefilter dhcp eap-tls mppe-mppc radius
+net-dialup/ppp activefilter dhcp eap-tls radius

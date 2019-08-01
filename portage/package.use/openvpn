@@ -1,1 +1,1 @@
-net-misc/openvpn down-root examples iproute2 passwordsave pkcs11 socks
+net-vpn/openvpn down-root examples iproute2 lz4 passwordsave pkcs11 socks

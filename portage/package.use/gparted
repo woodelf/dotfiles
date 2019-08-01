@@ -1,1 +1,1 @@
-sys-block/gparted btrfs dmraid f2fs fat hfs jfs mdadm ntfs reiser4 reiserfs xfs
+sys-block/gparted btrfs f2fs fat hfs jfs ntfs reiser4 reiserfs xfs

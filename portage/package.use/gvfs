@@ -1,1 +1,1 @@
-gnome-base/gvfs afp archive bluray fuse gphoto2 libsecret nfs samba
+gnome-base/gvfs archive fuse samba udisks

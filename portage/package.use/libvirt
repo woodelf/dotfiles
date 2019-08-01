@@ -1,1 +1,1 @@
-app-emulation/libvirt fuse lxc pcap sasl uml virt-network
+app-emulation/libvirt firewalld fuse lxc pcap sasl virt-network
