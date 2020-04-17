@@ -48,7 +48,12 @@ set showmode
 set wildignore=*.o,*.class,*.pyc
 
 " Always show line number
-set nu!
+set number
+
+" Powerline bindings
+let g:powerline_pycmd="py3"
+set laststatus=2
+set rtp+=/usr/lib/python3/dist-packages/powerline/bindings/vim
 
 "--------------
 " File Settings
