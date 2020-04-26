@@ -1,0 +1,23 @@
+sw_volume: 100
+audio_device_state:1:My ALSA Device
+state: play
+current: 8
+time: 113.183000
+random: 0
+repeat: 0
+single: 0
+consume: 0
+crossfade: 0
+mixrampdb: 0.000000
+mixrampdelay: -1.000000
+playlist_begin
+0:Voyage of Promise.mp3
+1:山猫号反攻作戦.mp3
+2:ノーマルバトル.mp3
+3:リュウ.ハヤブサ 鮮烈のリュウ -DW SW MIX-.mp3
+4:想いの眠るゆりかご.mp3
+5:银の意志.mp3
+6:鉄桥を越えて.mp3
+7:忠勝 ~Sengoku3 Mix~.mp3
+8:A Light Illuminatin The Depths-Remix.mp3
+playlist_end
