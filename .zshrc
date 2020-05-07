@@ -43,6 +43,8 @@ setopt EXTENDED_GLOB
 setopt NO_BG_NICE
 # Disable beep
 unsetopt BEEP
+# Disale nomatch
+setopt NO_NOMATCH
 #}}}
 
 #{{{ Key Bindings
@@ -216,6 +218,4 @@ alias ls='ls --color=auto'
 alias grep='grep --colour=auto'
 alias egrep='egrep --colour=auto'
 alias fgrep='fgrep --colour=auto'
-# FVWM settings
-export FVWM_USERDIR=~/.fvwm
 #}}}
