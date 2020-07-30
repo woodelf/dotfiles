@@ -1,0 +1,41 @@
+# Enable line number
+set linenumbers
+
+# Enable mouse support
+set mouse
+
+# Insert file into a new buffer
+set multibuffer
+
+# Do not add new empty lines
+set nonewlines
+
+# Disable hard wrap
+set nowrap
+
+# Set line number color
+set numbercolor cyan,normal
+
+# Enable extended regex search
+set regexp
+
+# Display cursor at highlighted item
+set showcursor
+
+# Enable smooth scrolling
+set smooth
+
+# Enable soft wrap for long lines
+set softwrap
+
+# Set status bar color
+set statuscolor cyan,normal
+
+# Set tab size as 4 chars
+set tabsize 4
+
+# Set title bar color
+set titlecolor cyan,normal
+
+# Remove trailing whitespaces
+set trimblanks
