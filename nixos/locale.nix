@@ -6,10 +6,10 @@
 
 
   # Locale configuration
+  console.packages = [ pkgs.terminus_font ];
+  console.font = "ter-116n";
+  console.keyMap = "us";
   i18n = {
-    consolePackages = [ pkgs.terminus_font ];
-    consoleFont = "ter-116n";
-    consoleKeyMap = "us";
     defaultLocale = "zh_CN.UTF-8";
     supportedLocales = [
       "en_US.UTF-8/UTF-8"
@@ -30,7 +30,7 @@
   };
 
   # Font configuration
-  fonts.enableFontDir = true;
+  fonts.fontDir.enable = true;
   fonts.fonts = with pkgs; [ wqy_microhei ];
   fonts.fontconfig.defaultFonts = {
     monospace = [ "WenQuanYi MicroHei Mono" ];
