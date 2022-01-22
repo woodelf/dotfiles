@@ -23,7 +23,7 @@ set regexp
 set showcursor
 
 # Enable smooth scrolling
-set smooth
+#set smooth
 
 # Enable soft wrap for long lines
 set softwrap
@@ -39,3 +39,8 @@ set titlecolor cyan,normal
 
 # Remove trailing whitespaces
 set trimblanks
+
+# Enable syntax highlighting
+include /usr/share/nano/gentoo.nanorc
+include /usr/share/nano/nanorc.nanorc
+include /usr/share/nano/sh.nanorc
